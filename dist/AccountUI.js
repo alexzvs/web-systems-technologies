@@ -3,10 +3,10 @@ document.addEventListener('DOMContentLoaded', function () {
   const tableBody = document.querySelector('tbody');
 
   // Event listener for the form submit
+  
   form.addEventListener('submit', function (event) {
-      event.preventDefault(); // Prevent form from submitting to allow validation
+      event.preventDefault(); 
 
-      // Check for empty fields in the form
       const name = form.querySelector('input[type="text"]');
       const email = form.querySelector('input[type="email"]');
       const role = form.querySelector('select');
@@ -16,16 +16,16 @@ document.addEventListener('DOMContentLoaded', function () {
           return;
       }
 
-      // If validation passes, call appendValues to add the form data to the table
+      
       appendValues(name.value, email.value, role.value);
 
-      // Clear form fields after appending values
+      
       name.value = '';
       email.value = '';
-      role.selectedIndex = 0; // Reset select to the first option
+      role.selectedIndex = 0; 
   });
 
-  // Function to append values to the table
+  
   function appendValues(name, email, role) {
       const newRow = document.createElement('tr');
       newRow.innerHTML = `
@@ -41,22 +41,22 @@ document.addEventListener('DOMContentLoaded', function () {
       tableBody.appendChild(newRow);
   }
 
-  // Event listener for click events in the table body
+  
   tableBody.addEventListener('click', function (event) {
-      const target = event.target.closest('button'); // Ensure we're clicking on the button and not outside
-      if (!target) return; // If not clicking on a button, do nothing
+      const target = event.target.closest('button'); 
+      if (!target) return; 
 
       const row = target.closest('tr');
       if (target.innerHTML.includes('fa-trash-alt')) {
-          // Handle delete action
+          
           if (confirm('Are you sure you want to delete this row?')) {
               row.remove();
           }
       } else if (target.innerHTML.includes('fa-edit')) {
-          // Handle edit action
+          
           const name = prompt('Edit name:', row.cells[1].textContent);
           const email = prompt('Edit email:', row.cells[2].textContent);
-          if (name !== null && email !== null) { // Check if user didn't press cancel
+          if (name !== null && email !== null) { 
               row.cells[1].textContent = name;
               row.cells[2].textContent = email;
           }
